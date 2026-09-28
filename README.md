@@ -1,79 +1,351 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# QuizApp – Learning Quiz Platform
 
-# Getting Started
+A React Native quiz application that allows users to participate in quizzes across different categories, track their scores, view leaderboards, manage their profiles, and customize application settings.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## 📱 Screenshots
 
-## Step 1: Start the Metro Server
+### 🔐 Authentication
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+| Login                                            | Register                                            |
+| ------------------------------------------------ | --------------------------------------------------- |
+| <img src="./screenshots/login.jpg" width="250"/> | <img src="./screenshots/register.jpg" width="250"/> |
 
-To start Metro, run the following command from the _root_ of your React Native project:
+### 🏠 Home & Quiz
 
-```bash
-# using npm
-npm start
+| Home / Categories                               | Quiz                                            |
+| ----------------------------------------------- | ----------------------------------------------- |
+| <img src="./screenshots/home.jpg" width="250"/> | <img src="./screenshots/quiz.jpg" width="250"/> |
 
-# OR using Yarn
-yarn start
+### 🏆 Results & Leaderboard
+
+| Result                                            | Leaderboard                                            |
+| ------------------------------------------------- | ------------------------------------------------------ |
+| <img src="./screenshots/result.jpg" width="250"/> | <img src="./screenshots/leaderboard.jpg" width="250"/> |
+
+### 👤 Profile & Settings
+
+<img src="./screenshots/profile.jpg" width="250"/>
+
+### ⚙️ Admin Panel
+
+<img src="./screenshots/admin-panel.jpg" width="250"/>
+
+---
+
+## ✨ Features
+
+### 👤 User Authentication
+
+* Email and password registration
+* Email and password login
+* Email verification
+* Google Sign-In
+* User authentication using Firebase
+
+### 📝 Quiz System
+
+* Dynamic quiz categories
+* Category-based quizzes
+* Timed quizzes
+* Randomized questions
+* Randomized answer options
+* Automatic score calculation
+* Quiz result screen
+
+### 🏆 Leaderboard
+
+* Score-based leaderboard
+* User ranking
+* Firebase-powered leaderboard data
+
+### 👤 Profile & Settings
+
+* User profile
+* Profile information
+* Notification sound settings
+* Application preferences
+
+### ⚙️ Admin Panel
+
+* Admin authentication flow
+* Quiz/category management
+* Administrative controls for quiz content
+
+### 💳 Premium Features
+
+* Stripe payment integration structure
+* Premium purchase flow
+* Secure backend integration planned for production payments
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology                 | Usage                           |
+| -------------------------- | ------------------------------- |
+| React Native               | Mobile application development  |
+| JavaScript                 | Application logic               |
+| Firebase Authentication    | User authentication             |
+| Firebase Firestore         | Application data                |
+| Firebase Realtime Database | Real-time data                  |
+| Google Sign-In             | Social authentication           |
+| AsyncStorage               | Local data storage              |
+| React Navigation           | Application navigation          |
+| Stripe                     | Payment integration             |
+| Lottie                     | Animations                      |
+| React Native Sound         | Notification/application sounds |
+
+---
+
+## 🔄 Application Flow
+
+```text
+User
+ │
+ ├── Register / Login
+ │
+ ├── Home
+ │    └── Select Quiz Category
+ │
+ ├── Quiz
+ │    ├── Answer Questions
+ │    ├── Timer
+ │    └── Submit Quiz
+ │
+ ├── Result
+ │    └── Score
+ │
+ ├── Leaderboard
+ │    └── View Rankings
+ │
+ └── Profile / Settings
+      ├── Profile Information
+      └── Sound Settings
 ```
 
-## Step 2: Start your Application
+---
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## 📂 Project Structure
 
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```text
+QuizApp/
+│
+├── android/
+├── ios/
+│
+├── src/
+│   ├── AdminPannel/
+│   ├── Auth/
+│   ├── UserPannel/
+│   └── assets/
+│
+├── App.jsx
+├── package.json
+├── .env.example
+├── .gitignore
+└── README.md
 ```
 
-### For iOS
+---
 
-```bash
-# using npm
-npm run ios
+## 🔥 Firebase Configuration
 
-# OR using Yarn
-yarn ios
+This project uses Firebase for authentication and application data.
+
+The application uses:
+
+* Firebase Authentication
+* Cloud Firestore
+* Firebase Realtime Database
+* Google Sign-In
+
+### Local Firebase Setup
+
+Firebase configuration files are intentionally excluded from the public repository.
+
+For Android, configure your own:
+
+```text
+android/app/google-services.json
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+For iOS, configure your own:
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+```text
+ios/GoogleService-Info.plist
+```
 
-## Step 3: Modifying your App
+Do not commit real Firebase configuration files containing project-specific credentials or configuration to a public repository unless you have intentionally reviewed and approved the exposure.
 
-Now that you have successfully run the app, let's modify it.
+---
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+## 🔐 Environment Configuration
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+Sensitive or environment-specific values should be configured locally.
 
-## Congratulations! :tada:
+Create a local `.env` file based on:
 
-You've successfully run and modified your React Native App. :partying_face:
+```text
+.env.example
+```
 
-### Now what?
+Example:
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+```env
+STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+BACKEND_URL=your_backend_url
+ADMIN_EMAIL=your_admin_email
+ADMIN_PASSWORD=your_admin_password
+```
 
-# Troubleshooting
+> Never commit your real `.env` file to GitHub.
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+---
 
-# Learn More
+## 💳 Stripe Configuration
 
-To learn more about React Native, take a look at the following resources:
+The project contains the structure for Stripe-based premium purchases.
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+For security reasons, sensitive Stripe operations should be handled through a secure backend rather than directly from the mobile application.
+
+The public repository does **not** contain Stripe secret keys.
+
+Before using Stripe payments in production:
+
+1. Configure a secure backend.
+2. Store Stripe secret keys only on the backend.
+3. Create payment intents securely from the backend.
+4. Return only the required information to the mobile application.
+5. Configure the required environment variables locally.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure you have installed:
+
+* Node.js
+* React Native development environment
+* Android Studio
+* Android SDK
+* Java Development Kit
+* Firebase project
+
+For React Native CLI development, follow the official React Native environment setup for your operating system.
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/jaytarsariya-dev/react-native-quiz-app.git
+```
+
+### 2. Navigate to the project
+
+```bash
+cd react-native-quiz-app
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Configure environment variables
+
+Create your local `.env` file using:
+
+```text
+.env.example
+```
+
+and add your own configuration values.
+
+### 5. Configure Firebase
+
+Add your own Firebase configuration files locally:
+
+```text
+android/app/google-services.json
+```
+
+and, when building for iOS:
+
+```text
+ios/GoogleService-Info.plist
+```
+
+### 6. Run the application
+
+Start Metro:
+
+```bash
+npx react-native start
+```
+
+In another terminal, run Android:
+
+```bash
+npx react-native run-android
+```
+
+---
+
+## 🔒 Security Notes
+
+This repository has been prepared for public GitHub hosting.
+
+The following sensitive items are excluded from the repository:
+
+* `.env`
+* Firebase configuration files
+* Stripe secret keys
+* Local debug keystore
+* Other environment-specific configuration
+
+The repository uses `.env.example` to demonstrate the required configuration without exposing real values.
+
+For production use, authentication roles, Firebase security rules, and payment operations should be configured securely on the backend.
+
+---
+
+## 📌 Future Improvements
+
+* Improve admin role management using Firebase custom claims
+* Move complete Stripe payment processing to a secure backend
+* Add more quiz categories
+* Add additional quiz difficulty levels
+* Improve analytics and user statistics
+* Add push notifications
+* Improve offline support
+* Add more profile customization options
+* Improve overall UI/UX
+
+---
+
+## 👨‍💻 Developer
+
+**Jay Tarsariya**
+
+React Native Developer | Mobile Application Developer
+
+### Skills
+
+* React Native
+* JavaScript
+* TypeScript
+* Redux
+* REST APIs
+* Firebase
+* SQLite
+* React Navigation
+* Git
+* Android Development
+
+---
+
+## 📄 License
+
+This project is intended for portfolio and educational purposes.
